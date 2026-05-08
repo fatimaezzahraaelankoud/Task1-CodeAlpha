@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
+    'todo',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -47,7 +51,18 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",   # port par défaut de React
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # ou SessionAuthentication
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 
 ROOT_URLCONF = 'config.urls'
 
