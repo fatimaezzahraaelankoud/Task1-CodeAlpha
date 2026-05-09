@@ -6,3 +6,6 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = ['id', 'title', 'description', 'completed', 'created_at']
         read_only_fields = ['id', 'created_at']
+    
+    def perform_create(self, serializer):
+         serializer.save(user=self.request.user)
